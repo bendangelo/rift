@@ -1,0 +1,33 @@
+{
+  "name": "interia",
+  "version": "0.1.0",
+  "description": "Javascript Game Utility Library",
+  "homepage": "https://github.com/bendangelo/interia",
+  "author": {
+    "name": "Ben D'Angelo",
+    "email": "ben.dangelo2@gmail.com",
+    "url": "http://bendangelo.me"
+  },
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bendangelo/interia.git"
+  },
+  "keywords": [
+    "game",
+    "utility"
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "7b4361d420c788ae4d1ef2a5c29099db0b16cac4",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.0",
+    "should": "~1.2.2",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-mocha": "~0.3.0"
+  }
+}

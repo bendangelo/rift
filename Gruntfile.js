@@ -6,20 +6,29 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         concat: {
+
+          lib: {
+
             options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+                banner: '/*! <%= pkg.name %> V<%= pkg.version %> %> */\n',
                 linefeed: "\n",
                 process: "true"
             },
 
-          all: {
             src: [
-                'src/header.js',
-                'src/<%= pkg.name %>.js',
-                'src/**/!(footer).js',
-                'src/footer.js'
+                'lib/header.js',
+                'lib/<%= pkg.name %>.js',
+                'lib/**/!(footer).js',
+                'lib/footer.js'
                 ],
             dest: '<%= pkg.name %>.js'
+          },
+
+          test: {
+            src: [
+                'test/**/*_test.js'
+            ],
+            dest: 'dest/tests.js'
           }
 
         },
@@ -33,27 +42,27 @@ module.exports = function (grunt) {
 
         },
 
-        mocha: {
+        mochaTest: {
+          files: ['test/**/*_test.js']
+        },
 
-          all:{
-            options: {
-              run: true,
-              ignoreLeaks: false
-            },
-
-            src: [ 'test/test.html' ]
+        mochaTestConfig: {
+          options: {
+            reporter: 'landing',
+            ui: "qunit"
           }
-
         }
 
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-mocha');
+    grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-connect');
 
-    grunt.registerTask('build', ['concat:all', 'uglify']);
+    grunt.registerTask('test', ['concat:lib', 'mochaTest']);
+    grunt.registerTask('build', ['concat:lib', 'uglify']);
 
-    grunt.registerTask('default', ['mocha', 'build']);
+    grunt.registerTask('default', ['test', 'build']);
 
 };

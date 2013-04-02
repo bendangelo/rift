@@ -1,11 +1,9 @@
-/*! interia 2013-03-31 */
-(function( window )) {
-    var exports = (typeof exports === "undefined") ? window : exports;
-Interia = {};
+/*! interia V0.1.0 %> */
+(function( window ) {
+
+var Interia = {};
 
 Interia.VERSION = '0.1.0';
-
-exports.Interia = Interia;
 
 Interia.clamp = function(value, min, max){
     if(value == null) return null;
@@ -20,5 +18,22 @@ Interia.clamp = function(value, min, max){
 
     return value;
 };
+
+if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+    window.Interia = Interia;
+
+    define(function() {
+      return Interia;
+    });
+
+} else if(typeof module != "undefined") {
+
+    module.exports = Interia;
+
+} else {
+
+    window.Interia = Interia;
+
+}
 
 }(this));

@@ -1,35 +1,42 @@
-
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
 
+        dox: {
+            options: {
+                title: "Interia Documentation"
+            },
+            files: {
+                src: ['lib/*.js'],
+                dest: 'docs'
+            }
+        },
+
         concat: {
 
-          lib: {
+            lib: {
 
-            options: {
-                banner: '/*! <%= pkg.name %> V<%= pkg.version %> %> */\n',
-                linefeed: "\n",
-                process: "true"
+                options: {
+                    banner: '/*! <%= pkg.name %> V<%= pkg.version %> %> */\n',
+                    linefeed: "\n",
+                    process: "true"
+                },
+
+                src: [
+                    'lib/header.js',
+                    'lib/<%= pkg.name %>.js',
+                    'lib/**/!(footer).js',
+                    'lib/footer.js'],
+                dest: '<%= pkg.name %>.js'
             },
 
-            src: [
-                'lib/header.js',
-                'lib/<%= pkg.name %>.js',
-                'lib/**/!(footer).js',
-                'lib/footer.js'
-                ],
-            dest: '<%= pkg.name %>.js'
-          },
-
-          test: {
-            src: [
-                'test/**/*_test.js'
-            ],
-            dest: 'dest/tests.js'
-          }
+            test: {
+                src: [
+                    'test/**/*_test.js'],
+                dest: 'dest/tests.js'
+            }
 
         },
 
@@ -43,14 +50,14 @@ module.exports = function (grunt) {
         },
 
         mochaTest: {
-          files: ['test/**/*_test.js']
+            files: ['test/**/*_test.js']
         },
 
         mochaTestConfig: {
-          options: {
-            reporter: 'landing',
-            ui: "qunit"
-          }
+            options: {
+                reporter: 'landing',
+                ui: "qunit"
+            }
         }
 
     });
@@ -59,9 +66,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-dox');
 
     grunt.registerTask('test', ['concat:lib', 'mochaTest']);
-    grunt.registerTask('build', ['concat:lib', 'uglify']);
+    grunt.registerTask('build', ['concat:lib', 'uglify', 'dox']);
 
     grunt.registerTask('default', ['test', 'build']);
 

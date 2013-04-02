@@ -5,20 +5,29 @@ var Interia = {};
 
 Interia.VERSION = '0.1.0';
 
-Interia.clamp = function(value, min, max){
-    if(value == null) return null;
+/*
+Clamps a value between two values.
 
-    if(value < min){
+Example:
+
+    Interia.clamp(value, 10);
+
+    Interia.clamp(value, 0, 100);
+*/
+Interia.clamp = function(value, min, max) {
+
+    if (value == null) return null;
+
+    if (value < min) {
         return min;
     }
 
-    if(max != null && value > max){
+    if (max != null && value > max) {
         return max;
     }
 
     return value;
 };
-
 if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
     window.Interia = Interia;
 
@@ -26,7 +35,7 @@ if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) 
       return Interia;
     });
 
-} else if(typeof module != "undefined") {
+} else if(typeof module == "object" && module.exports) {
 
     module.exports = Interia;
 

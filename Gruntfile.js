@@ -4,15 +4,9 @@ module.exports = function(grunt) {
 
         pkg: grunt.file.readJSON('package.json'),
 
-        dox: {
-            options: {
-                title: "Rift Documentation"
-            },
-            files: {
-                src: ['lib/*.js'],
-                dest: 'docs'
-            }
-        },
+        // Exclude these files from the build
+        // Example: ["random"]
+        ignores: [],
 
         concat: {
 
@@ -26,8 +20,7 @@ module.exports = function(grunt) {
 
                 src: [
                     'lib/header.js',
-                    'lib/<%= pkg.name %>.js',
-                    'lib/**/!(footer).js',
+                    'lib/**/!(<%= ignores.concat("footer").join("|") %>).js',
                     'lib/footer.js'],
                 dest: '<%= pkg.name %>.js'
             },
@@ -49,6 +42,13 @@ module.exports = function(grunt) {
 
         },
 
+        watch: {
+            tests: {
+                files: ["lib/**/*.js", "test/**/*_test.js"],
+                tasks: ["test"]
+            }
+        },
+
         mochaTest: {
             files: ['test/**/*_test.js']
         },
@@ -58,6 +58,16 @@ module.exports = function(grunt) {
                 reporter: 'landing',
                 ui: "qunit"
             }
+        },
+
+        dox: {
+            options: {
+                title: "Rift Documentation"
+            },
+            files: {
+                src: ['lib/*.js'],
+                dest: 'docs'
+            }
         }
 
     });
@@ -65,7 +75,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-dox');
 
     grunt.registerTask('test', ['concat:lib', 'mochaTest']);

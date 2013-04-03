@@ -17,27 +17,40 @@ code {
   div.description {margin: 14px 0; padding-top: 14px; border-top:1px solid #eee; border-bottom:1px solid #eee; }
   .tags {}
     .tags .types {color:#666}
-.ctx-type { float:right; margin-top:8px }</style></head><body><div class="row"><div class="twelve columns"><h1 class="pagetitle">Rift</h1></div></div><div class="row"><div id="nav" class="three columns"><ul class="side-nav"><li><a href="../../docs/lib/core.js.html">lib/core.js</a><ul><li><a href="../../docs/lib/core.js.html#hitRect">hitRect</a></li></ul></li><li><a href="../../docs/lib/footer.js.html">lib/footer.js</a><ul></ul></li><li><a href="../../docs/lib/header.js.html">lib/header.js</a><ul></ul></li><li><a href="../../docs/lib/random.js.html">lib/random.js</a><ul><li><a href="../../docs/lib/random.js.html#random">random</a></li><li><a href="../../docs/lib/random.js.html#randomInt">randomInt</a></li></ul></li><li><a href="../../docs/lib/tile.js.html">lib/tile.js</a><ul><li><a href="../../docs/lib/tile.js.html#tile">tile</a></li><li><a href="../../docs/lib/tile.js.html#tileWorld">tileWorld</a></li></ul></li><li><a href="../../docs/lib/utils.js.html">lib/utils.js</a><ul><li><a href="../../docs/lib/utils.js.html#clamp">clamp</a></li></ul></li></ul></div><div class="nine columns"><div class="comment"><div class="tags"><ul class="no-bullet"></ul></div><div class="description"></div><pre><code class="language-javascript">if (typeof define == 'function' &amp;&amp; typeof define.amd == 'object' &amp;&amp; define.amd) {
+.ctx-type { float:right; margin-top:8px }</style></head><body><div class="row"><div class="twelve columns"><h1 class="pagetitle">Rift</h1></div></div><div class="row"><div id="nav" class="three columns"><ul class="side-nav"><li><a href="../../docs/lib/core.js.html">lib/core.js</a><ul><li><a href="../../docs/lib/core.js.html#hitRect">hitRect</a></li></ul></li><li><a href="../../docs/lib/footer.js.html">lib/footer.js</a><ul></ul></li><li><a href="../../docs/lib/header.js.html">lib/header.js</a><ul></ul></li><li><a href="../../docs/lib/random.js.html">lib/random.js</a><ul><li><a href="../../docs/lib/random.js.html#random">random</a></li><li><a href="../../docs/lib/random.js.html#randomInt">randomInt</a></li></ul></li><li><a href="../../docs/lib/tile.js.html">lib/tile.js</a><ul><li><a href="../../docs/lib/tile.js.html#tile">tile</a></li><li><a href="../../docs/lib/tile.js.html#tileWorld">tileWorld</a></li></ul></li><li><a href="../../docs/lib/utils.js.html">lib/utils.js</a><ul><li><a href="../../docs/lib/utils.js.html#clamp">clamp</a></li></ul></li></ul></div><div class="nine columns"><div class="comment"><div class="label radius ctx-type">method</div><h1 id="tile">tile</h1><h5 class="subheader">Rift.tile()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert the given coordinate into tile space.</p>
 
-    // comment this out if you don't want Rift in global namespace
-    window.Rift = Rift;
+<h2>Example</h2>
 
-    define(function() {
-      return Rift;
-    });
+<pre><code>Rift.toTile(50, 40); // returns 1
 
-} else if(typeof module == &quot;object&quot; &amp;&amp; module.exports) {
+var x = 10, y = 40, size = 40;
 
-    // Export Rift for nodejs
-    module.exports = Rift;
+player.tileX = Rift.tile(x, size);
+player.tileY = Rift.tile(y, size);
+</code></pre></div><pre><code class="language-javascript">Rift.tile = function(value, size) {
 
-} else {
+    return (value - size * 0.5) / size + 0.5 | 0;
 
-    window.Rift = Rift;
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="tileWorld">tileWorld</h1><h5 class="subheader">Rift.tileWorld()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert the given coordinate into tile space and then back into world space.</p>
 
-}
+<h2>Example</h2>
 
-}(this));</code></pre></div></div></div><!-- Foundation JS--><script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/3.2.2/javascripts/foundation.min.js"></script><script>/**
+<pre><code>Rift.tileWorld(54, 50); // returns 50
+
+Rift.tileWorld(10, 40); // returns 0
+</code></pre></div><pre><code class="language-javascript">Rift.tileWorld = function(value, size){
+
+    return Rift.tile(value, size) * size;
+
+};
+
+Rift.bisectX = function(value, width, tileWidth) {
+    return bi % (width / sizeX) | 0;
+};
+
+Rift.bisectY = function(value, width, tileWidth) {
+    return (bi * sizeX) / (width - 0.1) | 0;
+};</code></pre></div></div></div><!-- Foundation JS--><script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/3.2.2/javascripts/foundation.min.js"></script><script>/**
  * Prism: Lightweight, robust, elegant syntax highlighting
  * MIT license http://www.opensource.org/licenses/mit-license.php/
  * @author Lea Verou http://lea.verou.me

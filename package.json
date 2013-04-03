@@ -29,6 +29,7 @@
     "should": "~1.2.2",
     "grunt-contrib-concat": "~0.1.3",
     "grunt-mocha-test": "~0.2.0",
-    "grunt-dox": "~0.4.1"
+    "grunt-dox": "~0.4.1",
+    "grunt-contrib-watch": "~0.3.1"
   }
 }

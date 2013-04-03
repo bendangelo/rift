@@ -17,27 +17,53 @@ code {
   div.description {margin: 14px 0; padding-top: 14px; border-top:1px solid #eee; border-bottom:1px solid #eee; }
   .tags {}
     .tags .types {color:#666}
-.ctx-type { float:right; margin-top:8px }</style></head><body><div class="row"><div class="twelve columns"><h1 class="pagetitle">Rift</h1></div></div><div class="row"><div id="nav" class="three columns"><ul class="side-nav"><li><a href="../../docs/lib/core.js.html">lib/core.js</a><ul><li><a href="../../docs/lib/core.js.html#hitRect">hitRect</a></li></ul></li><li><a href="../../docs/lib/footer.js.html">lib/footer.js</a><ul></ul></li><li><a href="../../docs/lib/header.js.html">lib/header.js</a><ul></ul></li><li><a href="../../docs/lib/random.js.html">lib/random.js</a><ul><li><a href="../../docs/lib/random.js.html#random">random</a></li><li><a href="../../docs/lib/random.js.html#randomInt">randomInt</a></li></ul></li><li><a href="../../docs/lib/tile.js.html">lib/tile.js</a><ul><li><a href="../../docs/lib/tile.js.html#tile">tile</a></li><li><a href="../../docs/lib/tile.js.html#tileWorld">tileWorld</a></li></ul></li><li><a href="../../docs/lib/utils.js.html">lib/utils.js</a><ul><li><a href="../../docs/lib/utils.js.html#clamp">clamp</a></li></ul></li></ul></div><div class="nine columns"><div class="comment"><div class="tags"><ul class="no-bullet"></ul></div><div class="description"></div><pre><code class="language-javascript">if (typeof define == 'function' &amp;&amp; typeof define.amd == 'object' &amp;&amp; define.amd) {
+.ctx-type { float:right; margin-top:8px }</style></head><body><div class="row"><div class="twelve columns"><h1 class="pagetitle">Rift</h1></div></div><div class="row"><div id="nav" class="three columns"><ul class="side-nav"><li><a href="../../docs/lib/core.js.html">lib/core.js</a><ul><li><a href="../../docs/lib/core.js.html#hitRect">hitRect</a></li></ul></li><li><a href="../../docs/lib/footer.js.html">lib/footer.js</a><ul></ul></li><li><a href="../../docs/lib/header.js.html">lib/header.js</a><ul></ul></li><li><a href="../../docs/lib/random.js.html">lib/random.js</a><ul><li><a href="../../docs/lib/random.js.html#random">random</a></li><li><a href="../../docs/lib/random.js.html#randomInt">randomInt</a></li></ul></li><li><a href="../../docs/lib/tile.js.html">lib/tile.js</a><ul><li><a href="../../docs/lib/tile.js.html#tile">tile</a></li><li><a href="../../docs/lib/tile.js.html#tileWorld">tileWorld</a></li></ul></li><li><a href="../../docs/lib/utils.js.html">lib/utils.js</a><ul><li><a href="../../docs/lib/utils.js.html#clamp">clamp</a></li></ul></li></ul></div><div class="nine columns"><div class="comment"><div class="label radius ctx-type">method</div><h1 id="random">random</h1><h5 class="subheader">Rift.random()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Randomly find an array element, object value or number.</p>
 
-    // comment this out if you don't want Rift in global namespace
-    window.Rift = Rift;
+<h2>Example</h2>
 
-    define(function() {
-      return Rift;
-    });
+<pre><code>Rift.random(); // returns 0-1
 
-} else if(typeof module == &quot;object&quot; &amp;&amp; module.exports) {
+Rift.random(10); // returns 0-9
 
-    // Export Rift for nodejs
-    module.exports = Rift;
+Rift.random(5, 15); // returns 5-14
 
-} else {
+Rift.random({ key: "value" }); // returns "key"
 
-    window.Rift = Rift;
+Rift.random([10, 1, 5]); // returns random element
+</code></pre></div><pre><code class="language-javascript">Rift.random = function(max, min) {
 
-}
+    var rand = Math.random();
+    if (max instanceof Array) {
 
-}(this));</code></pre></div></div></div><!-- Foundation JS--><script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/3.2.2/javascripts/foundation.min.js"></script><script>/**
+        // find array element
+        return max[rand * max.length | 0];
+
+    } else if (typeof max == &quot;object&quot;) {
+
+        // return random object key
+        var result;
+        for (var prop in max) {
+            if (Math.random() &lt; 1 / ++rand || !result) {
+                result = prop;
+            }
+        }
+
+        return result;
+    }
+
+    // return random number based on arguments
+    switch (arguments.length) {
+        case 0:
+            return rand;
+        case 1:
+            return rand * max;
+        case 2:
+            return rand * (max - min + 1) + min;
+    }
+
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="randomInt">randomInt</h1><h5 class="subheader">Rift.randomInt()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Same as "Rift.random()" except always returns an integer value.</p></div><pre><code class="language-javascript">Rift.randomInt = function() {
+    return Rift.random.apply(Rift, arguments)| 0;
+};</code></pre></div></div></div><!-- Foundation JS--><script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/3.2.2/javascripts/foundation.min.js"></script><script>/**
  * Prism: Lightweight, robust, elegant syntax highlighting
  * MIT license http://www.opensource.org/licenses/mit-license.php/
  * @author Lea Verou http://lea.verou.me

@@ -1,10 +1,10 @@
-/*! inertia V0.1.0 %> */
+/*! rift V0.1.0 %> */
 (function( window ) {
 
-var Interia = {};
+var Rift = {};
 
 // current interia version
-Interia.VERSION = '0.1.0';
+Rift.VERSION = '0.1.0';
 
 /*
 Clamps a number between a minimum and maximum.
@@ -31,21 +31,21 @@ Interia.clamp = function(value, min, max) {
 };
 if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
 
-    // comment this out if you don't want Interia in global namespace
-    window.Interia = Interia;
+    // comment this out if you don't want Rift in global namespace
+    window.Rift = Rift;
 
     define(function() {
-      return Interia;
+      return Rift;
     });
 
 } else if(typeof module == "object" && module.exports) {
 
-    // Export interia for nodejs
-    module.exports = Interia;
+    // Export Rift for nodejs
+    module.exports = Rift;
 
 } else {
 
-    window.Interia = Interia;
+    window.Rift = Rift;
 
 }
 

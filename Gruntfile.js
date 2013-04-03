@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
         dox: {
             options: {
-                title: "Interia Documentation"
+                title: "Rift Documentation"
             },
             files: {
                 src: ['lib/*.js'],

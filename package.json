@@ -1,20 +1,20 @@
 {
-  "name": "inertia",
+  "name": "rift",
   "version": "0.1.0",
-  "description": "Javascript Game Utility Library",
-  "homepage": "https://github.com/bendangelo/inertia",
+  "description": "Javascript Game Math Library",
+  "homepage": "https://github.com/bendangelo/rift",
   "author": {
     "name": "Ben D'Angelo",
     "email": "ben.dangelo2@gmail.com",
     "url": "http://bendangelo.me"
   },
-  "main": "inertia.js",
+  "main": "rift.js",
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bendangelo/inertia.git"
+    "url": "git://github.com/bendangelo/rift.git"
   },
   "keywords": [
     "game",

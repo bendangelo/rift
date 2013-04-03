@@ -1,20 +1,20 @@
 {
-  "name": "interia",
+  "name": "inertia",
   "version": "0.1.0",
   "description": "Javascript Game Utility Library",
-  "homepage": "https://github.com/bendangelo/interia",
+  "homepage": "https://github.com/bendangelo/inertia",
   "author": {
     "name": "Ben D'Angelo",
     "email": "ben.dangelo2@gmail.com",
     "url": "http://bendangelo.me"
   },
-  "main": "Gruntfile.js",
+  "main": "inertia.js",
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bendangelo/interia.git"
+    "url": "git://github.com/bendangelo/inertia.git"
   },
   "keywords": [
     "game",

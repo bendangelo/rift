@@ -17,7 +17,7 @@ code {
   div.description {margin: 14px 0; padding-top: 14px; border-top:1px solid #eee; border-bottom:1px solid #eee; }
   .tags {}
     .tags .types {color:#666}
-.ctx-type { float:right; margin-top:8px }</style></head><body><div class="row"><div class="twelve columns"><h1 class="pagetitle">Rift</h1></div></div><div class="row"><div id="nav" class="three columns"><ul class="side-nav"><li><a href="../../docs/lib/core.js.html">lib/core.js</a><ul><li><a href="../../docs/lib/core.js.html#hitRect">hitRect</a></li></ul></li><li><a href="../../docs/lib/footer.js.html">lib/footer.js</a><ul></ul></li><li><a href="../../docs/lib/header.js.html">lib/header.js</a><ul></ul></li><li><a href="../../docs/lib/random.js.html">lib/random.js</a><ul><li><a href="../../docs/lib/random.js.html#random">random</a></li><li><a href="../../docs/lib/random.js.html#randomInt">randomInt</a></li></ul></li><li><a href="../../docs/lib/tile.js.html">lib/tile.js</a><ul><li><a href="../../docs/lib/tile.js.html#tile">tile</a></li><li><a href="../../docs/lib/tile.js.html#tileWorld">tileWorld</a></li></ul></li><li><a href="../../docs/lib/utils.js.html">lib/utils.js</a><ul><li><a href="../../docs/lib/utils.js.html#clamp">clamp</a></li></ul></li></ul></div><div class="nine columns"><div class="comment"><div class="label radius ctx-type">method</div><h1 id="tile">tile</h1><h5 class="subheader">Rift.tile()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert the given coordinate into tile space.</p>
+.ctx-type { float:right; margin-top:8px }</style></head><body><div class="row"><div class="twelve columns"><h1 class="pagetitle">Rift</h1></div></div><div class="row"><div id="nav" class="three columns"><ul class="side-nav"><li><a href="../../docs/lib/footer.js.html">lib/footer.js</a><ul></ul></li><li><a href="../../docs/lib/header.js.html">lib/header.js</a><ul></ul></li><li><a href="../../docs/lib/math.js.html">lib/math.js</a><ul><li><a href="../../docs/lib/math.js.html#hitTest">hitTest</a></li><li><a href="../../docs/lib/math.js.html#distance">distance</a></li></ul></li><li><a href="../../docs/lib/random.js.html">lib/random.js</a><ul><li><a href="../../docs/lib/random.js.html#random">random</a></li><li><a href="../../docs/lib/random.js.html#randomInt">randomInt</a></li></ul></li><li><a href="../../docs/lib/tile.js.html">lib/tile.js</a><ul><li><a href="../../docs/lib/tile.js.html#tile">tile</a></li><li><a href="../../docs/lib/tile.js.html#bisectX">bisectX</a></li><li><a href="../../docs/lib/tile.js.html#bisectY">bisectY</a></li><li><a href="../../docs/lib/tile.js.html#toBisect">toBisect</a></li><li><a href="../../docs/lib/tile.js.html#isoX">isoX</a></li><li><a href="../../docs/lib/tile.js.html#isoY">isoY</a></li><li><a href="../../docs/lib/tile.js.html#isoZ">isoZ</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoX">worldIsoX</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoY">worldIsoY</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoZ">worldIsoZ</a></li></ul></li><li><a href="../../docs/lib/utils.js.html">lib/utils.js</a><ul><li><a href="../../docs/lib/utils.js.html#clamp">clamp</a></li></ul></li></ul></div><div class="nine columns"><div class="comment"><div class="label radius ctx-type">method</div><h1 id="tile">tile</h1><h5 class="subheader">Rift.tile()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert the given coordinate into tile space.</p>
 
 <h2>Example</h2>
 
@@ -28,28 +28,75 @@ var x = 10, y = 40, size = 40;
 player.tileX = Rift.tile(x, size);
 player.tileY = Rift.tile(y, size);
 </code></pre></div><pre><code class="language-javascript">Rift.tile = function(value, size) {
-
     return (value - size * 0.5) / size + 0.5 | 0;
-
-};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="tileWorld">tileWorld</h1><h5 class="subheader">Rift.tileWorld()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert the given coordinate into tile space and then back into world space.</p>
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="bisectX">bisectX</h1><h5 class="subheader">Rift.bisectX()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert a tile value into a x tile position. This is useful for sprites where you have a single id that can be used to identify x and y positions. Values returned are in tile space.</p>
 
 <h2>Example</h2>
 
-<pre><code>Rift.tileWorld(54, 50); // returns 50
+<pre><code>Rift.bisectX(1, 160, 60); // returns 1
+</code></pre></div><pre><code class="language-javascript">Rift.bisectX = function(value, tileWidth, totalWidth) {
+    return value % (totalWidth / tileWidth) | 0;
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="bisectY">bisectY</h1><h5 class="subheader">Rift.bisectY()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert a tile value into a y tile position. This is useful for sprites where you have a single id that can be used to identify x and y positions. Values returned are in tile space.</p>
 
-Rift.tileWorld(10, 40); // returns 0
-</code></pre></div><pre><code class="language-javascript">Rift.tileWorld = function(value, size){
+<h2>Example</h2>
 
-    return Rift.tile(value, size) * size;
+<pre><code>Rift.bisectY(1, 160, 60); // returns 0
+</code></pre></div><pre><code class="language-javascript">Rift.bisectY = function(value, tileWidth, totalWidth) {
+    return (value * tileWidth) / (totalWidth - 0.1) | 0;
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="toBisect">toBisect</h1><h5 class="subheader">Rift.toBisect()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert tile x and y positions into a single number that can later be retrived from bisectX / bisectY.</p>
 
-};
+<h2>Example</h2>
 
-Rift.bisectX = function(value, width, tileWidth) {
-    return bi % (width / sizeX) | 0;
-};
+<pre><code>Rift.toBisect(1, 2, 40, 80);
+</code></pre></div><pre><code class="language-javascript">Rift.toBisect = function(tileX, tileY, tileWidth, totalWidth) {
+    return (tileX + (tileY * (totalWidth / tileWidth)));
+}</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="isoX">isoX</h1><h5 class="subheader">Rift.isoX()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert a given position into an isometric x coordinate.</p>
 
-Rift.bisectY = function(value, width, tileWidth) {
-    return (bi * sizeX) / (width - 0.1) | 0;
+<h2>Example</h2>
+
+<pre><code>Rift.isoX(-9, 90, 30); // returns 2
+</code></pre></div><pre><code class="language-javascript">Rift.isoX = function(x, y, tileWidth) {
+    var ym = (2 * y - x) * 0.5;
+    var xm = x + ym;
+
+    return Math.round(xm / tileWidth) - 1;
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="isoY">isoY</h1><h5 class="subheader">Rift.isoY()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert a given position into an isometric y coordinate.</p>
+
+<h2>Example</h2>
+
+<pre><code>Rift.isoY(-5, 30, 30); // returns 1
+</code></pre></div><pre><code class="language-javascript">Rift.isoY = function(x, y, tileDepth) {
+    var ym = (2 * y - x) * 0.5;
+
+    return Math.round(ym / tileDepth);
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="isoZ">isoZ</h1><h5 class="subheader">Rift.isoZ()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert a given position into an isometric z coordinate.</p>
+
+<h2>Example</h2>
+
+<pre><code>Rift.isoZ(2, 30); // returns 0
+</code></pre></div><pre><code class="language-javascript">Rift.isoZ = function(z, tileHeight) {
+    return Rift.tile(z, tileHeight);
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="worldIsoX">worldIsoX</h1><h5 class="subheader">Rift.worldIsoX()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert given isometric coordinates into a x position. This can be used to render isometric tiles.</p>
+
+<h2>Example</h2>
+
+<pre><code>Rift.worldIsoX(4, 1, 30); // returns 90
+</code></pre></div><pre><code class="language-javascript">Rift.worldIsoX = function(isoX, isoY, tileWidth) {
+    return (isoX - isoY) * tileWidth;
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="worldIsoY">worldIsoY</h1><h5 class="subheader">Rift.worldIsoY()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert given isometric coordinates into a y position. This can be used to render isometric tiles.</p>
+
+<h2>Example</h2>
+
+<pre><code>Rift.worldIsoY(3, 2, 30); // returns 75
+</code></pre></div><pre><code class="language-javascript">Rift.worldIsoY = function(isoX, isoY, tileDepth) {
+    return (isoX + isoY) * tileDepth * 0.5;
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="worldIsoZ">worldIsoZ</h1><h5 class="subheader">Rift.worldIsoZ()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert given isometric z position into a y position. This can be used to find an isometric tile's height.</p>
+
+<h2>Example</h2>
+
+<pre><code>Rift.worldIsoZ(1, 30); // return 30
+</code></pre></div><pre><code class="language-javascript">Rift.worldIsoZ = function(isoZ, tileHeight) {
+    return isoZ * tileHeight;
 };</code></pre></div></div></div><!-- Foundation JS--><script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/3.2.2/javascripts/foundation.min.js"></script><script>/**
  * Prism: Lightweight, robust, elegant syntax highlighting
  * MIT license http://www.opensource.org/licenses/mit-license.php/

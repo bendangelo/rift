@@ -17,12 +17,30 @@ code {
   div.description {margin: 14px 0; padding-top: 14px; border-top:1px solid #eee; border-bottom:1px solid #eee; }
   .tags {}
     .tags .types {color:#666}
-.ctx-type { float:right; margin-top:8px }</style></head><body><div class="row"><div class="twelve columns"><h1 class="pagetitle">Rift</h1></div></div><div class="row"><div id="nav" class="three columns"><ul class="side-nav"><li><a href="../../docs/lib/core.js.html">lib/core.js</a><ul><li><a href="../../docs/lib/core.js.html#hitRect">hitRect</a></li></ul></li><li><a href="../../docs/lib/footer.js.html">lib/footer.js</a><ul></ul></li><li><a href="../../docs/lib/header.js.html">lib/header.js</a><ul></ul></li><li><a href="../../docs/lib/random.js.html">lib/random.js</a><ul><li><a href="../../docs/lib/random.js.html#random">random</a></li><li><a href="../../docs/lib/random.js.html#randomInt">randomInt</a></li></ul></li><li><a href="../../docs/lib/tile.js.html">lib/tile.js</a><ul><li><a href="../../docs/lib/tile.js.html#tile">tile</a></li><li><a href="../../docs/lib/tile.js.html#tileWorld">tileWorld</a></li></ul></li><li><a href="../../docs/lib/utils.js.html">lib/utils.js</a><ul><li><a href="../../docs/lib/utils.js.html#clamp">clamp</a></li></ul></li></ul></div><div class="nine columns"><div class="comment"><div class="label radius ctx-type">method</div><h1 id="hitRect">hitRect</h1><h5 class="subheader">Rift.hitRect()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"></div><pre><code class="language-javascript">Rift.hitRect = function(x1, y1, w1, h1, x2, y2, w2, h2) {
+.ctx-type { float:right; margin-top:8px }</style></head><body><div class="row"><div class="twelve columns"><h1 class="pagetitle">Rift</h1></div></div><div class="row"><div id="nav" class="three columns"><ul class="side-nav"><li><a href="../../docs/lib/footer.js.html">lib/footer.js</a><ul></ul></li><li><a href="../../docs/lib/header.js.html">lib/header.js</a><ul></ul></li><li><a href="../../docs/lib/math.js.html">lib/math.js</a><ul><li><a href="../../docs/lib/math.js.html#hitTest">hitTest</a></li><li><a href="../../docs/lib/math.js.html#distance">distance</a></li></ul></li><li><a href="../../docs/lib/random.js.html">lib/random.js</a><ul><li><a href="../../docs/lib/random.js.html#random">random</a></li><li><a href="../../docs/lib/random.js.html#randomInt">randomInt</a></li></ul></li><li><a href="../../docs/lib/tile.js.html">lib/tile.js</a><ul><li><a href="../../docs/lib/tile.js.html#tile">tile</a></li><li><a href="../../docs/lib/tile.js.html#bisectX">bisectX</a></li><li><a href="../../docs/lib/tile.js.html#bisectY">bisectY</a></li><li><a href="../../docs/lib/tile.js.html#toBisect">toBisect</a></li><li><a href="../../docs/lib/tile.js.html#isoX">isoX</a></li><li><a href="../../docs/lib/tile.js.html#isoY">isoY</a></li><li><a href="../../docs/lib/tile.js.html#isoZ">isoZ</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoX">worldIsoX</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoY">worldIsoY</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoZ">worldIsoZ</a></li></ul></li><li><a href="../../docs/lib/utils.js.html">lib/utils.js</a><ul><li><a href="../../docs/lib/utils.js.html#clamp">clamp</a></li></ul></li></ul></div><div class="nine columns"><div class="comment"><div class="label radius ctx-type">method</div><h1 id="hitTest">hitTest</h1><h5 class="subheader">Rift.hitTest()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Checks if two rectangles overlap.</p>
 
-};
+<h2>Example</h2>
 
-Rift.distance = function(x1, y1, x2, y2) {
+<pre><code>Rift.hitTest(0, 0, 10, 10, 9, 9, 5, 5); // returns true
+</code></pre></div><pre><code class="language-javascript">Rift.hitTest = function(x1, y1, w1, h1, x2, y2, w2, h2) {
+    return !
+    (
+    x1 &gt; x2 + w2 ||
+    x1 + w1 &lt; x2 ||
+    y1 &gt; y2 + h2 ||
+    y1 + h1 &lt; y2
+    );
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="distance">distance</h1><h5 class="subheader">Rift.distance()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Calculates distance between two points.</p>
 
+<h2>Example</h2>
+
+<pre><code>Rift.distance(10, 10, 20, 40); // returns 31
+</code></pre></div><pre><code class="language-javascript">Rift.distance = function(x1, y1, x2, y2) {
+  var kx, ky;
+  kx = x2 - x1;
+  ky = y2 - y1;
+
+  return Math.sqrt(kx*kx + ky*ky);
 };</code></pre></div></div></div><!-- Foundation JS--><script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/3.2.2/javascripts/foundation.min.js"></script><script>/**
  * Prism: Lightweight, robust, elegant syntax highlighting
  * MIT license http://www.opensource.org/licenses/mit-license.php/

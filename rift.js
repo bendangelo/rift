@@ -1,7 +1,21 @@
 /*! rift V0.1.1 %> */
 (function( window ) {
 
-var Rift = {};
+var Rift;
+
+if(typeof exports != "undefined"){
+    Rift = exports;
+} else {
+    Rift = window.Rift = {};
+}
+
+if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+
+    define(function() {
+      return Rift;
+    });
+
+}
 
 // current rift version
 Rift.VERSION = '0.1.1';
@@ -145,7 +159,7 @@ Example:
 */
 Rift.toBisect = function(tileX, tileY, tileWidth, totalWidth) {
     return (tileX + (tileY * (totalWidth / tileWidth)));
-}
+};
 
 /*
 Convert a given position into an isometric x coordinate.
@@ -246,25 +260,4 @@ Rift.clamp = function(value, min, max) {
 
     return value;
 };
-
-if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
-
-    // comment this out if you don't want Rift in global namespace
-    window.Rift = Rift;
-
-    define(function() {
-      return Rift;
-    });
-
-} else if(typeof module == "object" && module.exports) {
-
-    // Export Rift for nodejs
-    module.exports = Rift;
-
-} else {
-
-    window.Rift = Rift;
-
-}
-
 }(this));

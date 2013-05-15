@@ -15,7 +15,8 @@ module.exports = function(grunt) {
                 options: {
                     banner: '/*! <%= pkg.name %> V<%= pkg.version %> %> */\n',
                     linefeed: "\n",
-                    process: "true"
+                    footer: "}(this));",
+                    process: true
                 },
 
                 src: [

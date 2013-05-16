@@ -80,23 +80,23 @@ player.tileY = Rift.tile(y, size);
 
 <h2>Example</h2>
 
-<pre><code>Rift.worldIsoX(4, 1, 30); // returns 90
-</code></pre></div><pre><code class="language-javascript">Rift.worldIsoX = function(isoX, isoY, tileWidth) {
-    return (isoX - isoY) * tileWidth;
+<pre><code>Rift.worldIsoX(4, 1) * 30; // returns 90
+</code></pre></div><pre><code class="language-javascript">Rift.worldIsoX = function(isoX, isoY) {
+    return (isoX - isoY);
 };</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="worldIsoY">worldIsoY</h1><h5 class="subheader">Rift.worldIsoY()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert given isometric coordinates into a y position. This can be used to render isometric tiles.</p>
 
 <h2>Example</h2>
 
-<pre><code>Rift.worldIsoY(3, 2, 30); // returns 75
-</code></pre></div><pre><code class="language-javascript">Rift.worldIsoY = function(isoX, isoY, tileDepth) {
-    return (isoX + isoY) * tileDepth * 0.5;
+<pre><code>Rift.worldIsoY(3, 2) * 30; // returns 75
+</code></pre></div><pre><code class="language-javascript">Rift.worldIsoY = function(isoX, isoY) {
+    return (isoX + isoY) * 0.5;
 };</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="worldIsoZ">worldIsoZ</h1><h5 class="subheader">Rift.worldIsoZ()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert given isometric z position into a y position. This can be used to find an isometric tile's height.</p>
 
 <h2>Example</h2>
 
-<pre><code>Rift.worldIsoZ(1, 30); // return 30
-</code></pre></div><pre><code class="language-javascript">Rift.worldIsoZ = function(isoZ, tileHeight) {
-    return isoZ * tileHeight;
+<pre><code>Rift.worldIsoZ(1) * 30; // return 30
+</code></pre></div><pre><code class="language-javascript">Rift.worldIsoZ = function(isoZ) {
+    return isoZ;
 };</code></pre></div></div></div><!-- Foundation JS--><script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/3.2.2/javascripts/foundation.min.js"></script><script>/**
  * Prism: Lightweight, robust, elegant syntax highlighting
  * MIT license http://www.opensource.org/licenses/mit-license.php/

@@ -56,14 +56,14 @@ test("#isoZ()", function(){
 
 test("#worldIsoX()", function(){
 
-    Rift.worldIsoX(4, 1, 30).should.eql(90);
+    (Rift.worldIsoX(4, 1) * 30).should.eql(90);
 });
 
 test("#worldIsoY()", function(){
 
-    Rift.worldIsoY(3, 2, 30).should.eql(75);
+    (Rift.worldIsoY(3, 2) * 30).should.eql(75);
 });
 
 test("#worldIsoZ()", function(){
-    Rift.worldIsoZ(1, 30).should.eql(30);
+    (Rift.worldIsoZ(1) * 30).should.eql(30);
 });

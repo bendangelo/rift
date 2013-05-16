@@ -207,11 +207,11 @@ Convert given isometric coordinates into a x position. This can be used to rende
 
 Example:
 
-    Rift.worldIsoX(4, 1, 30); // returns 90
+    Rift.worldIsoX(4, 1) * 30; // returns 90
 
 */
-Rift.worldIsoX = function(isoX, isoY, tileWidth) {
-    return (isoX - isoY) * tileWidth;
+Rift.worldIsoX = function(isoX, isoY) {
+    return (isoX - isoY);
 };
 
 /*
@@ -219,11 +219,11 @@ Convert given isometric coordinates into a y position. This can be used to rende
 
 Example:
 
-    Rift.worldIsoY(3, 2, 30); // returns 75
+    Rift.worldIsoY(3, 2) * 30; // returns 75
 
 */
-Rift.worldIsoY = function(isoX, isoY, tileDepth) {
-    return (isoX + isoY) * tileDepth * 0.5;
+Rift.worldIsoY = function(isoX, isoY) {
+    return (isoX + isoY) * 0.5;
 };
 
 /*
@@ -231,11 +231,11 @@ Convert given isometric z position into a y position. This can be used to find a
 
 Example:
 
-    Rift.worldIsoZ(1, 30); // return 30
+    Rift.worldIsoZ(1) * 30; // return 30
 
 */
-Rift.worldIsoZ = function(isoZ, tileHeight) {
-    return isoZ * tileHeight;
+Rift.worldIsoZ = function(isoZ) {
+    return isoZ;
 };
 /*
 Clamps a number between a minimum and maximum.

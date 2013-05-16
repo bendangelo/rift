@@ -13,7 +13,7 @@ module.exports = function(grunt) {
             lib: {
 
                 options: {
-                    banner: '/*! <%= pkg.name %> V<%= pkg.version %> %> */\n',
+                    banner: '/*! <%= pkg.name %> <%= pkg.version %> */\n',
                     linefeed: "\n",
                     footer: "}(this));",
                     process: true

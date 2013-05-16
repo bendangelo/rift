@@ -1,4 +1,4 @@
-/*! rift V0.1.1 %> */
+/*! rift 0.1.2 */
 (function(window) {
 
     var Rift;
@@ -18,7 +18,7 @@
     }
 
     // current rift version
-    Rift.VERSION = '0.1.1';
+    Rift.VERSION = '0.1.2';
 /*
 Checks if two rectangles overlap.
 

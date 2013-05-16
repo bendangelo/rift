@@ -1,25 +1,24 @@
 /*! rift V0.1.1 %> */
-(function( window ) {
+(function(window) {
 
-var Rift;
+    var Rift;
 
-if(typeof exports != "undefined"){
-    Rift = exports;
-} else {
-    Rift = window.Rift = {};
-}
+    if (typeof exports != "undefined") {
+        Rift = exports;
+    } else {
+        Rift = window.Rift = {};
+    }
 
-if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+    if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
 
-    define(function() {
-      return Rift;
-    });
+        define(function() {
+            return Rift;
+        });
 
-}
+    }
 
-// current rift version
-Rift.VERSION = '0.1.1';
-
+    // current rift version
+    Rift.VERSION = '0.1.1';
 /*
 Checks if two rectangles overlap.
 
@@ -29,13 +28,8 @@ Example:
 
 */
 Rift.hitTest = function(x1, y1, w1, h1, x2, y2, w2, h2) {
-    return !
-    (
-    x1 > x2 + w2 ||
-    x1 + w1 < x2 ||
-    y1 > y2 + h2 ||
-    y1 + h1 < y2
-    );
+  return !(
+  x1 > x2 + w2 || x1 + w1 < x2 || y1 > y2 + h2 || y1 + h1 < y2);
 };
 
 /*
@@ -47,11 +41,10 @@ Example:
 
 */
 Rift.distance = function(x1, y1, x2, y2) {
-  var kx, ky;
-  kx = x2 - x1;
-  ky = y2 - y1;
+  var dx = x2 - x1;
+  var dy = y2 - y1;
 
-  return Math.sqrt(kx*kx + ky*ky);
+  return Math.sqrt(dx * dx + dy * dy);
 };
 /*
 Randomly find an array element, object value or number.
@@ -238,6 +231,29 @@ Rift.worldIsoZ = function(isoZ) {
     return isoZ;
 };
 /*
+Convert the given radian intro degrees.
+
+Example:
+
+    Rift.toDeg(Math.PI) // returns 180
+
+*/
+Rift.toDeg = function(radians){
+    return radians * 180.0 / Math.PI;
+};
+
+/*
+Convert the given degree into radians.
+
+Example:
+
+    Rift.toRad(180) // returns Math.PI
+
+*/
+Rift.toRad = function(degrees){
+    return degrees * Math.PI / 180.0;
+};
+/*
 Clamps a number between a minimum and maximum.
 
 Example:
@@ -248,13 +264,13 @@ Example:
 */
 Rift.clamp = function(value, min, max) {
 
-    if (value == null) return null;
+    if (value === undefined) return;
 
     if (value < min) {
         return min;
     }
 
-    if (max != null && value > max) {
+    if (max !== undefined && value > max) {
         return max;
     }
 

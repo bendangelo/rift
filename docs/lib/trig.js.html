@@ -17,52 +17,20 @@ code {
   div.description {margin: 14px 0; padding-top: 14px; border-top:1px solid #eee; border-bottom:1px solid #eee; }
   .tags {}
     .tags .types {color:#666}
-.ctx-type { float:right; margin-top:8px }</style></head><body><div class="row"><div class="twelve columns"><h1 class="pagetitle">Rift</h1></div></div><div class="row"><div id="nav" class="three columns"><ul class="side-nav"><li><a href="../../docs/lib/header.js.html">lib/header.js</a><ul></ul></li><li><a href="../../docs/lib/math.js.html">lib/math.js</a><ul><li><a href="../../docs/lib/math.js.html#hitTest">hitTest</a></li><li><a href="../../docs/lib/math.js.html#distance">distance</a></li></ul></li><li><a href="../../docs/lib/random.js.html">lib/random.js</a><ul><li><a href="../../docs/lib/random.js.html#random">random</a></li><li><a href="../../docs/lib/random.js.html#randomInt">randomInt</a></li></ul></li><li><a href="../../docs/lib/tile.js.html">lib/tile.js</a><ul><li><a href="../../docs/lib/tile.js.html#tile">tile</a></li><li><a href="../../docs/lib/tile.js.html#bisectX">bisectX</a></li><li><a href="../../docs/lib/tile.js.html#bisectY">bisectY</a></li><li><a href="../../docs/lib/tile.js.html#toBisect">toBisect</a></li><li><a href="../../docs/lib/tile.js.html#isoX">isoX</a></li><li><a href="../../docs/lib/tile.js.html#isoY">isoY</a></li><li><a href="../../docs/lib/tile.js.html#isoZ">isoZ</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoX">worldIsoX</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoY">worldIsoY</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoZ">worldIsoZ</a></li></ul></li><li><a href="../../docs/lib/trig.js.html">lib/trig.js</a><ul><li><a href="../../docs/lib/trig.js.html#toDeg">toDeg</a></li><li><a href="../../docs/lib/trig.js.html#toRad">toRad</a></li></ul></li><li><a href="../../docs/lib/utils.js.html">lib/utils.js</a><ul><li><a href="../../docs/lib/utils.js.html#clamp">clamp</a></li></ul></li></ul></div><div class="nine columns"><div class="comment"><div class="label radius ctx-type">method</div><h1 id="random">random</h1><h5 class="subheader">Rift.random()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Randomly find an array element, object value or number.</p>
+.ctx-type { float:right; margin-top:8px }</style></head><body><div class="row"><div class="twelve columns"><h1 class="pagetitle">Rift</h1></div></div><div class="row"><div id="nav" class="three columns"><ul class="side-nav"><li><a href="../../docs/lib/header.js.html">lib/header.js</a><ul></ul></li><li><a href="../../docs/lib/math.js.html">lib/math.js</a><ul><li><a href="../../docs/lib/math.js.html#hitTest">hitTest</a></li><li><a href="../../docs/lib/math.js.html#distance">distance</a></li></ul></li><li><a href="../../docs/lib/random.js.html">lib/random.js</a><ul><li><a href="../../docs/lib/random.js.html#random">random</a></li><li><a href="../../docs/lib/random.js.html#randomInt">randomInt</a></li></ul></li><li><a href="../../docs/lib/tile.js.html">lib/tile.js</a><ul><li><a href="../../docs/lib/tile.js.html#tile">tile</a></li><li><a href="../../docs/lib/tile.js.html#bisectX">bisectX</a></li><li><a href="../../docs/lib/tile.js.html#bisectY">bisectY</a></li><li><a href="../../docs/lib/tile.js.html#toBisect">toBisect</a></li><li><a href="../../docs/lib/tile.js.html#isoX">isoX</a></li><li><a href="../../docs/lib/tile.js.html#isoY">isoY</a></li><li><a href="../../docs/lib/tile.js.html#isoZ">isoZ</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoX">worldIsoX</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoY">worldIsoY</a></li><li><a href="../../docs/lib/tile.js.html#worldIsoZ">worldIsoZ</a></li></ul></li><li><a href="../../docs/lib/trig.js.html">lib/trig.js</a><ul><li><a href="../../docs/lib/trig.js.html#toDeg">toDeg</a></li><li><a href="../../docs/lib/trig.js.html#toRad">toRad</a></li></ul></li><li><a href="../../docs/lib/utils.js.html">lib/utils.js</a><ul><li><a href="../../docs/lib/utils.js.html#clamp">clamp</a></li></ul></li></ul></div><div class="nine columns"><div class="comment"><div class="label radius ctx-type">method</div><h1 id="toDeg">toDeg</h1><h5 class="subheader">Rift.toDeg()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert the given radian intro degrees.</p>
 
 <h2>Example</h2>
 
-<pre><code>Rift.random(); // returns 0-1
+<pre><code>Rift.toDeg(Math.PI) // returns 180
+</code></pre></div><pre><code class="language-javascript">Rift.toDeg = function(radians){
+    return radians * 180.0 / Math.PI;
+};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="toRad">toRad</h1><h5 class="subheader">Rift.toRad()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Convert the given degree into radians.</p>
 
-Rift.random(10); // returns 0-9
+<h2>Example</h2>
 
-Rift.random(5, 15); // returns 5-14
-
-Rift.random({ key: "value" }); // returns "key"
-
-Rift.random([10, 1, 5]); // returns random element
-</code></pre></div><pre><code class="language-javascript">Rift.random = function(max, min) {
-
-    var rand = Math.random();
-    if (max instanceof Array) {
-
-        // find array element
-        return max[rand * max.length | 0];
-
-    } else if (typeof max == &quot;object&quot;) {
-
-        // return random object key
-        var result;
-        for (var prop in max) {
-            if (Math.random() &lt; 1 / ++rand || !result) {
-                result = prop;
-            }
-        }
-
-        return result;
-    }
-
-    // return random number based on arguments
-    switch (arguments.length) {
-        case 0:
-            return rand;
-        case 1:
-            return rand * max;
-        case 2:
-            return rand * (max - min + 1) + min;
-    }
-
-};</code></pre></div><div class="comment"><div class="label radius ctx-type">method</div><h1 id="randomInt">randomInt</h1><h5 class="subheader">Rift.randomInt()</h5><div class="tags"><ul class="no-bullet"></ul></div><div class="description"><p>Same as "Rift.random()" except always returns an integer value.</p></div><pre><code class="language-javascript">Rift.randomInt = function() {
-    return Rift.random.apply(Rift, arguments)| 0;
+<pre><code>Rift.toRad(180) // returns Math.PI
+</code></pre></div><pre><code class="language-javascript">Rift.toRad = function(degrees){
+    return degrees * Math.PI / 180.0;
 };</code></pre></div></div></div><!-- Foundation JS--><script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/3.2.2/javascripts/foundation.min.js"></script><script>/**
  * Prism: Lightweight, robust, elegant syntax highlighting
  * MIT license http://www.opensource.org/licenses/mit-license.php/
